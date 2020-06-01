@@ -18,12 +18,19 @@
     "umd"
   ],
   "dependencies": {
+    "@storybook/addon-storysource": "^5.3.19",
     "loadjs": "^4.2.0",
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/react": "^5.3.19",
     "@types/react": "^16.9.35",
+    "babel-loader": "^8.1.0",
     "nwb": "0.25.x",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -38,7 +45,9 @@
     "start": "nwb serve-react-demo",
     "test": "nwb test-react",
     "test:coverage": "nwb test-react --coverage",
-    "test:watch": "nwb test-react --server"
+    "test:watch": "nwb test-react --server",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
