@@ -1,25 +1,32 @@
 import expect from "expect";
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
+// import TestUtils from "react-dom/test-utils";
 
-// TODO
+import {
+  // Follow,
+  // Hashtag,
+  // Mention,
+  // Share,
+  // Timeline,
+  Tweet,
+} from "src/";
 
-// import Component from 'src/'
+describe("Tweet", () => {
+  let node;
 
-// describe('Component', () => {
-//   let node
+  beforeEach(() => {
+    node = document.createElement("div");
+    document.body.appendChild(node); // required for twitter library
+  });
 
-//   beforeEach(() => {
-//     node = document.createElement('div')
-//   })
+  afterEach(() => {
+    unmountComponentAtNode(node);
+  });
 
-//   afterEach(() => {
-//     unmountComponentAtNode(node)
-//   })
-
-//   it('displays a welcome message', () => {
-//     render(<Component/>, node, () => {
-//       expect(node.innerHTML).toContain('Welcome to React components')
-//     })
-//   })
-// })
+  it("loads tweet widget", () => {
+    render(<Tweet tweetId="841418541026877441" />, node, () => {
+      // ...
+    });
+  });
+});
