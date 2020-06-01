@@ -53,18 +53,22 @@ documentation now refers to this as *screenName*.
 
 **`Tweet`** requires a `tweetId` prop. Ex. `'511181794914627584'`
 
-All widgets accept an optional `options` object prop. To learn more about the
-available options (height, width, align, count, etc), see the Twitter
-documentation.
+### Common Props
 
-All widgets accept an optional `onLoad` callback, which is called every time
-the widget is loaded/reloaded (both on inital load and updates).
+All widgets accept these props.
+
+- `options` (object)
+  - To learn more about the available options (height, width, align, count, etc), refer to the Twitter documentation.
+- `onLoad` (function)
+  - Called every time the widget is loaded. A widget will reload if its props change.
+- `renderError` (function)
+  - Render prop. Rendered if widget cannot be loaded (no internet connection, screenName not found, bad props, etc).
+  - Example: `renderError={(_err) => <p>Could not load timeline</p>}`
 
 ## Further Information
 
 * This library loads the remote *Twitter for Websites* script.
 * Twitter widgets are only loaded in the browser. A blank div will be rendered during SSR.
-* Unfortunately, widget errors cannot be handled by this library. Twitter catches and logs any errors before they can bubble up. Therefore, if the remote library can't be loaded or if a supplied screen name does not exist, the widget will render as a blank div.
 
 ## Contributing
 

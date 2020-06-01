@@ -43,6 +43,20 @@ const widgetPropExamples = {
       },
     },
   },
+  timeline_bad: {
+    component: Timeline,
+    props: {
+      dataSource: {
+        sourceType: "profile",
+        screenName:
+          "NONEXISTING_jffjfjfjjfj9jpajsj9fj9fajlajll9393939amnnma9a9jajpajfjjfjfj",
+      },
+      options: {
+        height: "600",
+      },
+      renderError: (_err) => <p>Could not load timeline.</p>,
+    },
+  },
   tweet: {
     component: Tweet,
     props: {

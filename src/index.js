@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
   canUseDOM,
   twLoad,
@@ -13,12 +13,14 @@ if (canUseDOM) {
 }
 
 function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
-  // noop if ssr
-  if (!canUseDOM) {
-    return;
-  }
+  const [error, setError] = useState(null);
 
   const ref = useRef(null);
+
+  // noop if ssr
+  if (!canUseDOM) {
+    return { ref, error };
+  }
 
   // Make deps for useEffect. options, and possibly primaryArg must be compared deep.
   // NOTE onLoad is used in useCallback, but it is not listed as a dependency.
@@ -52,13 +54,21 @@ function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
 
           // primaryArg (possibly an object) and options must be cloned deep
           // since twitter mutates them (gah!)
-          await twttr.widgets[factoryFunctionName](
+          const resultMaybe = await twttr.widgets[factoryFunctionName](
             cloneDeep(primaryArg),
             childEl,
             cloneDeep(options)
           );
+
+          if (!resultMaybe) {
+            throw new Error(
+              "Twitter could not create widget. If it is a Timeline or " +
+                "Tweet, ensure the screenName/tweetId exists."
+            );
+          }
         } catch (e) {
           console.error(e);
+          setError(e);
           return;
         }
 
@@ -86,55 +96,65 @@ function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
     };
   }, deps);
 
-  return { ref };
+  return { ref, error };
 }
 
-export function Follow({ username, options, onLoad }) {
-  const { ref } = useTwitterWidget(
+export function Follow({ username, options, onLoad, renderError }) {
+  const { ref, error } = useTwitterWidget(
     "createFollowButton",
     username,
     options,
     onLoad
   );
-  return <div ref={ref} />;
+  return <div ref={ref}>{error && renderError && renderError(error)}</div>;
 }
 
-export function Hashtag({ hashtag, options, onLoad }) {
-  const { ref } = useTwitterWidget(
+export function Hashtag({ hashtag, options, onLoad, renderError }) {
+  const { ref, error } = useTwitterWidget(
     "createHashtagButton",
     hashtag,
     options,
     onLoad
   );
-  return <div ref={ref} />;
+  return <div ref={ref}>{error && renderError && renderError(error)}</div>;
 }
 
-export function Mention({ username, options, onLoad }) {
-  const { ref } = useTwitterWidget(
+export function Mention({ username, options, onLoad, renderError }) {
+  const { ref, error } = useTwitterWidget(
     "createMentionButton",
     username,
     options,
     onLoad
   );
-  return <div ref={ref} />;
+  return <div ref={ref}>{error && renderError && renderError(error)}</div>;
 }
 
-export function Share({ url, options, onLoad }) {
-  const { ref } = useTwitterWidget("createShareButton", url, options, onLoad);
-  return <div ref={ref} />;
+export function Share({ url, options, onLoad, renderError }) {
+  const { ref, error } = useTwitterWidget(
+    "createShareButton",
+    url,
+    options,
+    onLoad
+  );
+  return <div ref={ref}>{error && renderError && renderError(error)}</div>;
 }
 
-export function Timeline({ dataSource, options, onLoad }) {
-  const { ref } = useTwitterWidget(
+export function Timeline({ dataSource, options, onLoad, renderError }) {
+  const { ref, error } = useTwitterWidget(
     "createTimeline",
     dataSource,
     options,
     onLoad
   );
-  return <div ref={ref} />;
+  return <div ref={ref}>{error && renderError && renderError(error)}</div>;
 }
 
-export function Tweet({ tweetId, options, onLoad }) {
-  const { ref } = useTwitterWidget("createTweet", tweetId, options, onLoad);
-  return <div ref={ref} />;
+export function Tweet({ tweetId, options, onLoad, renderError }) {
+  const { ref, error } = useTwitterWidget(
+    "createTweet",
+    tweetId,
+    options,
+    onLoad
+  );
+  return <div ref={ref}>{error && renderError && renderError(error)}</div>;
 }
