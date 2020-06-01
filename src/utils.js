@@ -34,11 +34,13 @@ export function twWidgetFactory() {
   });
 }
 
-export function removeChildren(node) {
+export function removeChildrenWithAttribute(node, attribute) {
   if (node) {
-    while (node.firstChild) {
-      node.removeChild(node.firstChild);
-    }
+    node.querySelectorAll("*").forEach((child) => {
+      if (child.hasAttribute(attribute)) {
+        child.remove();
+      }
+    });
   }
 }
 

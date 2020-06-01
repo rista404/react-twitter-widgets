@@ -1,16 +1,18 @@
 import React, { useRef, useEffect, useState } from "react";
+import cloneDeep from "lodash.clonedeep";
 import {
   canUseDOM,
   twLoad,
   useDeepCompareMemoize,
-  removeChildren,
+  removeChildrenWithAttribute,
   twWidgetFactory,
 } from "./utils";
-import cloneDeep from "lodash.clonedeep";
 
 if (canUseDOM) {
   twLoad();
 }
+
+const childDivIdentifyingAttribute = "twdiv";
 
 function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
   const [error, setError] = useState(null);
@@ -34,19 +36,24 @@ function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
   ]);
 
   useEffect(() => {
+    // Reset error
+    setError(null);
+
     // Protect against race conditions
     // (set to true in cleanup function;
     // checked if canceled in async loadWidget)
     let isCanceled = false;
 
     if (ref.current) {
-      removeChildren(ref.current);
+      removeChildrenWithAttribute(ref.current, childDivIdentifyingAttribute);
 
       async function loadWidget() {
         if (!ref || !ref.current) {
           return;
         }
+
         const childEl = document.createElement("div");
+        childEl.setAttribute(childDivIdentifyingAttribute, "yes");
         ref.current.appendChild(childEl);
 
         try {

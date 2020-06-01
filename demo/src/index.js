@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { render } from "react-dom";
 
 import { Follow, Hashtag, Mention, Share, Timeline, Tweet } from "../../src";
@@ -68,6 +68,30 @@ const widgetPropExamples = {
   },
 };
 
+function TestTimelineScreenName() {
+  const [getScreenNameOk, setScreenNameOk] = useState(true);
+  return (
+    <>
+      <h2>Test Timeline Screen Name</h2>
+      <button onClick={() => setScreenNameOk(!getScreenNameOk)}>
+        Toggle OK
+      </button>
+      <Timeline
+        dataSource={{
+          sourceType: "profile",
+          screenName: getScreenNameOk
+            ? "TwitterDev"
+            : "NONEXISTING_jffjfjfjjfj9jpajsj9fj9fajlajll9393939amnnma9a9jajpajfjjfjfj",
+        }}
+        options={{
+          height: "400",
+        }}
+        renderError={(_err) => <p>Could not load timeline</p>}
+      />
+    </>
+  );
+}
+
 export default class Demo extends Component {
   render() {
     return (
@@ -81,6 +105,7 @@ export default class Demo extends Component {
             </div>
           )
         )}
+        <TestTimelineScreenName />
       </div>
     );
   }
