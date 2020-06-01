@@ -1,15 +1,43 @@
 {
   "name": "react-twitter-widgets",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "description": "Twitter widgets as React components",
-  "main": "dist/index.js",
+  "author": "Andrew Suzuki",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrewsuzuki/react-twitter-widgets/issues"
+  },
+  "homepage": "https://github.com/andrewsuzuki/react-twitter-widgets",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "types": "src/index.d.ts",
+  "files": [
+    "css",
+    "es",
+    "lib",
+    "umd"
+  ],
+  "dependencies": {
+    "loadjs": "^4.2.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0"
+  },
+  "devDependencies": {
+    "nwb": "0.25.x",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
   "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm run clean && babel src --out-dir dist",
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
     "prepublishOnly": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src"
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server"
   },
   "repository": {
     "type": "git",
@@ -30,37 +58,5 @@
     "hashtag",
     "button",
     "mention"
-  ],
-  "author": "Andrew Suzuki",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/andrewsuzuki/react-twitter-widgets/issues"
-  },
-  "homepage": "https://github.com/andrewsuzuki/react-twitter-widgets#readme",
-  "devDependencies": {
-    "@types/react": "^16.0.5",
-    "babel-cli": "^6.24.1",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^7.0.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "babel-preset-stage-0": "^6.16.0",
-    "eslint": "^3.19.0",
-    "eslint-config-airbnb": "^14.1.0",
-    "eslint-plugin-babel": "^4.0.0",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsx-a11y": "^4.0.0",
-    "eslint-plugin-react": "^6.10.3",
-    "react": "^15.3.0",
-    "rimraf": "^2.5.2"
-  },
-  "dependencies": {
-    "exenv": "^1.2.1",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.3.0",
-    "scriptjs": "^2.5.8"
-  },
-  "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0"
-  }
+  ]
 }

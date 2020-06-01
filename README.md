@@ -24,7 +24,7 @@ ReactDOM.render((
   <Timeline
     dataSource={{
       sourceType: 'profile',
-      screenName: 'twitterdev'
+      screenName: 'TwitterDev'
     }}
     options={{
       username: 'TwitterDev',
@@ -39,9 +39,9 @@ ReactDOM.render((
 
 Available widgets: `Timeline`, `Share`, `Follow`, `Hashtag`, `Mention`, `Tweet`
 
-All widgets take an optional options object prop. To learn more about the available options (height, width, align, count, etc), see [this link](https://dev.twitter.com/web/javascript/creating-widgets).
+All widgets take an optional options object prop. To learn more about the available options (height, width, align, count, etc), see [this link](https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-factory-functions).
 
-`Timeline` requires a `dataSource` object prop, see [here](https://dev.twitter.com/web/javascript/creating-widgets#timelines) for info. The source type can be profile, likes, list, collection, URL, or legacy widget configuration.
+`Timeline` requires a `dataSource` object prop, see [here](https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview) for more info relating to timeline types. The source type can be profile, likes, list, collection, URL, or legacy widget configuration.
 
 `Share` requires a `url` prop.
 
