@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from "react";
 import {
   canUseDOM,
   twLoad,
-  twApi,
   useDeepCompareMemoize,
   removeChildren,
+  twWidgetFactory,
 } from "./utils";
 import cloneDeep from "lodash.clonedeep";
 
@@ -50,11 +50,11 @@ function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
         ref.current.appendChild(childEl);
 
         try {
-          const twttr = await twApi();
+          const wf = await twWidgetFactory();
 
           // primaryArg (possibly an object) and options must be cloned deep
           // since twitter mutates them (gah!)
-          const resultMaybe = await twttr.widgets[factoryFunctionName](
+          const resultMaybe = await wf[factoryFunctionName](
             cloneDeep(primaryArg),
             childEl,
             cloneDeep(options)

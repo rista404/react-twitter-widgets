@@ -16,7 +16,7 @@ export function twLoad() {
   loadjs(twScriptUrl, twScriptName);
 }
 
-export function twApi() {
+export function twWidgetFactory() {
   return new Promise((resolve, reject) => {
     const rejectWithError = () =>
       reject(new Error("Could not load remote twitter widgets js"));
@@ -24,10 +24,10 @@ export function twApi() {
       success: () => {
         // Ensure loaded
         const twttr = window[twScriptWindowFieldName];
-        if (!twttr) {
+        if (!twttr || !twttr.widgets) {
           rejectWithError();
         }
-        resolve(twttr);
+        resolve(twttr.widgets);
       },
       error: rejectWithError,
     });
