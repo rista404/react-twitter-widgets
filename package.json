@@ -1,6 +1,6 @@
 {
   "name": "react-twitter-widgets",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "Twitter widgets as React components",
   "author": "Andrew Suzuki",
   "license": "MIT",
@@ -12,7 +12,7 @@
   "module": "es/index.js",
   "types": "src/index.d.ts",
   "files": [
-    "css",
+    "src/index.d.ts",
     "es",
     "lib",
     "umd"
