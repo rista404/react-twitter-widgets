@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 
 declare module 'react-twitter-widgets' {
   export type onLoad = () => any;
-  export type renderError = () => any;
+  export type renderError = (err: Error) => any;
 
   export interface FollowProps {
     username: string;
