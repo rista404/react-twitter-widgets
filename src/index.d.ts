@@ -1,4 +1,4 @@
-import { Component } from 'react'
+import { FunctionComponent } from 'react'
 
 declare module 'react-twitter-widgets' {
   export type onLoad = () => any;
@@ -10,9 +10,7 @@ declare module 'react-twitter-widgets' {
     onLoad?: onLoad;
     renderError?: renderError;
   }
-  export class Follow extends Component<FollowProps, any> {
-    render(): any;
-  }
+  export const Follow: FunctionComponent<FollowProps>;
 
   export interface HashtagProps {
     hashtag: string;
@@ -20,9 +18,7 @@ declare module 'react-twitter-widgets' {
     onLoad?: onLoad;
     renderError?: renderError;
   }
-  export class Hashtag extends Component<HashtagProps, any> {
-    render(): any;
-  }
+  export const Hashtag: FunctionComponent<HashtagProps>;
 
   export interface MentionProps {
     username: string;
@@ -30,9 +26,7 @@ declare module 'react-twitter-widgets' {
     onLoad?: onLoad;
     renderError?: renderError;
   }
-  export class Mention extends Component<MentionProps, any> {
-    render(): any;
-  }
+  export const Mention: FunctionComponent<MentionProps>;
 
   export interface ShareProps {
     url: string;
@@ -40,9 +34,7 @@ declare module 'react-twitter-widgets' {
     onLoad?: onLoad;
     renderError?: renderError;
   }
-  export class Share extends Component<ShareProps, any> {
-    render(): any;
-  }
+  export const Share: FunctionComponent<ShareProps>;
 
   export interface TimelineProps {
     dataSource: object;
@@ -50,9 +42,7 @@ declare module 'react-twitter-widgets' {
     onLoad?: onLoad;
     renderError?: renderError;
   }
-  export class Timeline extends Component<TimelineProps, any> {
-    render(): any;
-  }
+  export const Timeline: FunctionComponent<TimelineProps>;
 
   export interface TweetProps {
     tweetId: string;
@@ -60,7 +50,5 @@ declare module 'react-twitter-widgets' {
     onLoad?: onLoad;
     renderError?: renderError;
   }
-  export class Tweet extends Component<TweetProps, any> {
-    render(): any;
-  }
+  export const Tweet: FunctionComponent<TweetProps>;
 }

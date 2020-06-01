@@ -106,7 +106,7 @@ function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
   return { ref, error };
 }
 
-export function Follow({ username, options, onLoad, renderError }) {
+export const Follow = ({ username, options, onLoad, renderError }) => {
   const { ref, error } = useTwitterWidget(
     "createFollowButton",
     username,
@@ -114,9 +114,9 @@ export function Follow({ username, options, onLoad, renderError }) {
     onLoad
   );
   return <div ref={ref}>{error && renderError && renderError(error)}</div>;
-}
+};
 
-export function Hashtag({ hashtag, options, onLoad, renderError }) {
+export const Hashtag = ({ hashtag, options, onLoad, renderError }) => {
   const { ref, error } = useTwitterWidget(
     "createHashtagButton",
     hashtag,
@@ -124,9 +124,9 @@ export function Hashtag({ hashtag, options, onLoad, renderError }) {
     onLoad
   );
   return <div ref={ref}>{error && renderError && renderError(error)}</div>;
-}
+};
 
-export function Mention({ username, options, onLoad, renderError }) {
+export const Mention = ({ username, options, onLoad, renderError }) => {
   const { ref, error } = useTwitterWidget(
     "createMentionButton",
     username,
@@ -134,9 +134,9 @@ export function Mention({ username, options, onLoad, renderError }) {
     onLoad
   );
   return <div ref={ref}>{error && renderError && renderError(error)}</div>;
-}
+};
 
-export function Share({ url, options, onLoad, renderError }) {
+export const Share = ({ url, options, onLoad, renderError }) => {
   const { ref, error } = useTwitterWidget(
     "createShareButton",
     url,
@@ -144,9 +144,9 @@ export function Share({ url, options, onLoad, renderError }) {
     onLoad
   );
   return <div ref={ref}>{error && renderError && renderError(error)}</div>;
-}
+};
 
-export function Timeline({ dataSource, options, onLoad, renderError }) {
+export const Timeline = ({ dataSource, options, onLoad, renderError }) => {
   const { ref, error } = useTwitterWidget(
     "createTimeline",
     dataSource,
@@ -154,9 +154,9 @@ export function Timeline({ dataSource, options, onLoad, renderError }) {
     onLoad
   );
   return <div ref={ref}>{error && renderError && renderError(error)}</div>;
-}
+};
 
-export function Tweet({ tweetId, options, onLoad, renderError }) {
+export const Tweet = ({ tweetId, options, onLoad, renderError }) => {
   const { ref, error } = useTwitterWidget(
     "createTweet",
     tweetId,
@@ -164,4 +164,4 @@ export function Tweet({ tweetId, options, onLoad, renderError }) {
     onLoad
   );
   return <div ref={ref}>{error && renderError && renderError(error)}</div>;
-}
+};
