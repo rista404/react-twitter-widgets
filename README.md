@@ -1,6 +1,6 @@
 # react-twitter-widgets
 
-Alleviates the need for Twitter's default 2008-style widget snippets.
+Quick and easy Twitter widgets for React.
 
 Available widgets: `Timeline`, `Share`, `Follow`, `Hashtag`, `Mention`, `Tweet`.
 
@@ -14,44 +14,57 @@ npm install --save react-twitter-widgets
 
 ## Example
 
-[Click here](./site/screenshot.png) for a preview of all available widgets with example code.
-
 ```javascript
 import { Timeline } from 'react-twitter-widgets'
-// var Timeline = require('react-twitter-widgets').Timeline
 
-ReactDOM.render((
-  <Timeline
-    dataSource={{
-      sourceType: 'profile',
-      screenName: 'TwitterDev'
-    }}
-    options={{
-      username: 'TwitterDev',
-      height: '400'
-    }}
-    onLoad={() => console.log('Timeline is loaded!')}
-  />
-), document.getElementById('root'))
+// Timeline (with options)
+<Timeline
+  dataSource={{
+    sourceType: 'profile',
+    screenName: 'TwitterDev'
+  }}
+  options={{
+    height: '400'
+  }}
+  // Optional
+  // onLoad={() => console.log('Timeline is loaded!')}
+/>
+
+// Tweet (without options)
+<Tweet tweetId="841418541026877441" />
 ```
 
-# Usage
+## Usage
+
+[**Official Twitter Documentation**](https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-factory-functions)
 
 Available widgets: `Timeline`, `Share`, `Follow`, `Hashtag`, `Mention`, `Tweet`
 
-All widgets take an optional options object prop. To learn more about the available options (height, width, align, count, etc), see [this link](https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-factory-functions).
+**`Timeline`** requires a `dataSource` object prop.
+The source type can be `profile`, `likes`, `list`, `collection`, or `url`.
+They each require their own co-fields; see Twitter documentation.
 
-`Timeline` requires a `dataSource` object prop, see [here](https://developer.twitter.com/en/docs/twitter-for-websites/timelines/overview) for more info relating to timeline types. The source type can be profile, likes, list, collection, URL, or legacy widget configuration.
+**`Share`** requires a `url` prop.
 
-`Share` requires a `url` prop.
+**`Follow`** and **`Mention`** require a `username` prop. NOTE that the Twitter
+documentation now refers to this as *screenName*.
 
-`Follow` and `Mention` require a `username` prop.
+**`Hashtag`** requires a `hashtag` prop.
 
-`Hashtag` requires a `hashtag` prop.
+**`Tweet`** requires a `tweetId` prop. Ex. `'511181794914627584'`
 
-`Tweet` requires a `tweetId` prop. Ex. `'511181794914627584'`
+All widgets accept an optional `options` object prop. To learn more about the
+available options (height, width, align, count, etc), see the Twitter
+documentation.
 
-All widgets accept an optional `onLoad` callback, which is called every time the widget is loaded/reloaded (both on inital load and updates).
+All widgets accept an optional `onLoad` callback, which is called every time
+the widget is loaded/reloaded (both on inital load and updates).
+
+## Further Information
+
+* This library loads the remote *Twitter for Websites* script.
+* Twitter widgets are only loaded in the browser. A blank div will be rendered during SSR.
+* Unfortunately, widget errors cannot be handled by this library. Twitter catches and logs any errors before they can bubble up. Therefore, if the remote library can't be loaded or if a supplied screen name does not exist, the widget will render as a blank div.
 
 ## Contributing
 

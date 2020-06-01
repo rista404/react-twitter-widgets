@@ -39,7 +39,6 @@ const widgetPropExamples = {
         screenName: "reactjs",
       },
       options: {
-        username: "reactjs",
         height: "600",
       },
     },
