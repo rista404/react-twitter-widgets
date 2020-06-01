@@ -56,49 +56,18 @@ const widgetPropExamples = {
 };
 
 export default class Demo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      height: 400,
-    };
-  }
-
-  setHeight = (height) => {
-    this.setState({ height });
-  };
-
   render() {
     return (
       <div>
-        <h1>Timeline Demo</h1>
-
-        <input
-          type="range"
-          min="200"
-          max="800"
-          value={this.state.height}
-          onChange={(event) => this.setHeight(event.target.value)}
-        />
-
-        <Timeline
-          dataSource={{
-            sourceType: "profile",
-            screenName: "TwitterDev",
-          }}
-          options={{
-            username: "TwitterDev",
-            height: this.state.height,
-          }}
-          onLoad={() => console.log("Timeline is loaded!")}
-        />
-        {/* {Object.entries(widgetPropExamples).map(
+        <h1>Demo react-twitter-widgets</h1>
+        {Object.entries(widgetPropExamples).map(
           ([name, { component, props }]) => (
             <div key={name}>
               <h2 style={{ textTransform: "capitalize" }}>{name}</h2>
               {React.createElement(component, props)}
             </div>
           )
-        )} */}
+        )}
       </div>
     );
   }

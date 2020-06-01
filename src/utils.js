@@ -36,7 +36,6 @@ export function twApi() {
 
 export function removeChildren(node) {
   if (node) {
-    console.log("REMOVING CHILDREN");
     while (node.firstChild) {
       node.removeChild(node.firstChild);
     }
