@@ -10,6 +10,15 @@ export const ProfileBasic = () => (
   <Timeline dataSource={{ sourceType: "profile", screenName: "reactjs" }} />
 );
 
+export const ProfileLoadingError = () => (
+  <Timeline
+    dataSource={{ sourceType: "profile", screenName: `${Math.random()}` }}
+    renderError={_err =>
+      "Could not load timeline! ...Your custom component here"
+    }
+  />
+);
+
 export const ProfileSmaller = () => (
   <Timeline
     dataSource={{ sourceType: "profile", screenName: "reactjs" }}
