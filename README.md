@@ -1,10 +1,18 @@
 # react-twitter-widgets
 
+[![npm version](https://badge.fury.io/js/react-twitter-widgets.svg)](https://badge.fury.io/js/react-twitter-widgets)
+[![npm downloads](https://img.shields.io/npm/dm/react-twitter-widgets.svg)](https://badge.fury.io/js/react-twitter-widgets)
+[![GitHub issues](https://img.shields.io/github/issues/andrewsuzuki/react-twitter-widgets)](https://github.com/andrewsuzuki/react-twitter-widgets/issues)
+
 Quick and easy Twitter widgets for React.
 
 Available widgets: `Timeline`, `Share`, `Follow`, `Hashtag`, `Mention`, `Tweet`.
 
 See below for usage.
+
+## Demo
+
+**[Storybook / Live Demo](https://andrewsuzuki.github.io/react-twitter-widgets/?)**
 
 ## Installation
 
