@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import cloneDeep from "lodash.clonedeep";
 import {
   canUseDOM,
   twLoad,
-  useDeepCompareMemoize,
+  useShallowCompareMemoize,
   removeChildrenWithAttribute,
   twWidgetFactory,
+  cloneShallow
 } from "./utils";
 
 if (canUseDOM) {
@@ -24,16 +24,19 @@ function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
     return { ref, error };
   }
 
-  // Make deps for useEffect. options, and possibly primaryArg must be compared deep.
+  // Make deps for useEffect.
+  // options, and possibly primaryArg, are objects that should be compared (shallow).
+  // There currently aren't any nested arrays or objects, so they
+  // can be cloned in a shallow manner.
   // NOTE onLoad is used in useCallback, but it is not listed as a dependency.
   // Listing it would likely cause unnecessary loads. The latest onLoad should be
   // used regardless, since it will not be called unless the other dependencies
   // change, so it works out.
-  const deps = useDeepCompareMemoize([
+  const deps = [
     factoryFunctionName,
-    primaryArg,
-    options,
-  ]);
+    useShallowCompareMemoize(primaryArg),
+    useShallowCompareMemoize(options)
+  ];
 
   useEffect(() => {
     // Reset error
@@ -59,15 +62,19 @@ function useTwitterWidget(factoryFunctionName, primaryArg, options, onLoad) {
         try {
           const wf = await twWidgetFactory();
 
-          // primaryArg (possibly an object) and options must be cloned deep
-          // since twitter mutates them (gah!)
+          // primaryArg (possibly an object) and options must be cloned
+          // since twitter mutates them (gah!).
+          // There currently aren't any nested arrays or objects, so they
+          // can be cloned in a shallow manner.
           const resultMaybe = await wf[factoryFunctionName](
-            cloneDeep(primaryArg),
+            cloneShallow(primaryArg),
             childEl,
-            cloneDeep(options)
+            cloneShallow(options)
           );
 
-          if (!resultMaybe) {
+          // Twitter returns undefined if widget creation fails.
+          // However, if deps are stale (isCanceled), suppress error (likely race condition).
+          if (!resultMaybe && !isCanceled) {
             throw new Error(
               "Twitter could not create widget. If it is a Timeline or " +
                 "Tweet, ensure the screenName/tweetId exists."

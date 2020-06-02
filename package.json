@@ -18,9 +18,7 @@
     "umd"
   ],
   "dependencies": {
-    "loadjs": "^4.2.0",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.isequal": "^4.5.0"
+    "loadjs": "^4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

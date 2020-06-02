@@ -42,7 +42,7 @@ import { Timeline } from 'react-twitter-widgets'
 
 ## Usage
 
-[**Official Twitter Documentation**](https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-factory-functions)
+[**🔗 Official Twitter Documentation**](https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/guides/scripting-factory-functions)
 
 Available widgets: `Timeline`, `Share`, `Follow`, `Hashtag`, `Mention`, `Tweet`
 
