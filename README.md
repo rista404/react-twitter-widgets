@@ -12,7 +12,7 @@ See below for usage.
 
 ## Demo
 
-**[Storybook / Live Demo](https://andrewsuzuki.github.io/react-twitter-widgets/?)**
+**[Storybook / Live Demo](https://andrewsuzuki.github.io/react-twitter-widgets/)**
 
 ## Installation
 
@@ -34,8 +34,6 @@ import { Timeline } from 'react-twitter-widgets'
   options={{
     height: '400'
   }}
-  // Optional
-  // onLoad={() => console.log('Timeline is loaded!')}
 />
 
 // Tweet (without options)
@@ -66,7 +64,7 @@ documentation now refers to this as *screenName*.
 All widgets accept these props.
 
 - `options` (object)
-  - To learn more about the available options (height, width, align, count, etc), refer to the Twitter documentation.
+  - To learn more about the available options, refer to the Twitter documentation. There are four options that are common to all widgets (`lang`, `dnt`, `related`, and `via`). There are further options for button widgets, tweet buttons, Timeline, and Tweet.
 - `onLoad` (function)
   - Called every time the widget is loaded. A widget will reload if its props change.
 - `renderError` (function)
