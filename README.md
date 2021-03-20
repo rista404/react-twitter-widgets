@@ -25,6 +25,9 @@ npm install --save react-twitter-widgets
 ```javascript
 import { Timeline } from 'react-twitter-widgets'
 
+// Tweet (without options)
+<Tweet tweetId="841418541026877441" />
+
 // Timeline (with options)
 <Timeline
   dataSource={{
@@ -35,9 +38,6 @@ import { Timeline } from 'react-twitter-widgets'
     height: '400'
   }}
 />
-
-// Tweet (without options)
-<Tweet tweetId="841418541026877441" />
 ```
 
 ## Usage
@@ -46,9 +46,7 @@ import { Timeline } from 'react-twitter-widgets'
 
 Available widgets: `Timeline`, `Share`, `Follow`, `Hashtag`, `Mention`, `Tweet`
 
-**`Timeline`** requires a `dataSource` object prop.
-The source type can be `profile`, `likes`, `list`, `collection`, or `url`.
-They each require their own co-fields; see Twitter documentation.
+**`Timeline`** requires a `dataSource` object prop. The source type can be `profile`, `list`, or `url`. They each require their own co-fields; see Twitter documentation. NOTE that `collection`, `likes`, and `moments` will be [deprecated](https://twittercommunity.com/t/removing-support-for-embedded-like-collection-and-moment-timelines/150313) on June 23, 2021.
 
 **`Share`** requires a `url` prop.
 

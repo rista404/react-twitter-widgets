@@ -61,10 +61,6 @@ export const ProfileJapanese = () => (
   />
 );
 
-export const LikesBasic = () => (
-  <Timeline dataSource={{ sourceType: "likes", screenName: "reactjs" }} />
-);
-
 export const ListBasic = () => (
   <Timeline
     dataSource={{
@@ -72,12 +68,6 @@ export const ListBasic = () => (
       ownerScreenName: "twitter",
       id: "214727905"
     }}
-  />
-);
-
-export const CollectionBasic = () => (
-  <Timeline
-    dataSource={{ sourceType: "collection", id: "393773266801659904" }}
   />
 );
 
