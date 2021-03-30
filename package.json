@@ -1,6 +1,6 @@
 {
   "name": "react-twitter-widgets",
-  "version": "1.9.5",
+  "version": "1.10.0",
   "description": "Twitter widgets as React components",
   "author": "Andrew Suzuki",
   "license": "MIT",
@@ -34,7 +34,7 @@
     "react-dom": "^16.13.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^16.8.0 || ^17"
   },
   "scripts": {
     "build": "nwb build-react-component",
