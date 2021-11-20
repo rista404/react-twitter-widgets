@@ -1,7 +1,8 @@
-import { FunctionComponent, ReactNode } from 'react'
+import { FunctionComponent, ReactNode } from "react";
 
-declare module 'react-twitter-widgets' {
+declare module "react-twitter-widgets" {
   export type onLoad = () => any;
+  export type onError = () => any;
   export type renderError = (error: Error) => ReactNode;
 
   export interface FollowProps {
@@ -48,6 +49,7 @@ declare module 'react-twitter-widgets' {
     tweetId: string;
     options?: Object;
     onLoad?: onLoad;
+    onError?: onError;
     renderError?: renderError;
   }
   export const Tweet: FunctionComponent<TweetProps>;
